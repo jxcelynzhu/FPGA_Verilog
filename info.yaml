@@ -1,7 +1,7 @@
 # Tiny Tapeout project information
 project:
-  title:        ""      # Project title
-  author:       ""      # Your name
+  title:        "Verilog Project"      # Project title
+  author:       "Jocelyn Zhu"      # Your name
   discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  ""      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
@@ -22,23 +22,23 @@ project:
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
   # Inputs
-  ui[0]: ""
-  ui[1]: ""
-  ui[2]: ""
-  ui[3]: ""
-  ui[4]: ""
-  ui[5]: ""
-  ui[6]: ""
-  ui[7]: ""
+  ui[0]: "X"
+  ui[1]: "X"
+  ui[2]: "X"
+  ui[3]: "X"
+  ui[4]: "X"
+  ui[5]: "X"
+  ui[6]: "X"
+  ui[7]: "X"
 
   # Outputs
-  uo[0]: ""
-  uo[1]: ""
-  uo[2]: ""
-  uo[3]: ""
-  uo[4]: ""
-  uo[5]: ""
-  uo[6]: ""
+  uo[0]: "X"
+  uo[1]: "X"
+  uo[2]: "X"
+  uo[3]: "X"
+  uo[4]: "X"
+  uo[5]: "X"
+  uo[6]: "X"
   uo[7]: ""
 
   # Bidirectional pins
