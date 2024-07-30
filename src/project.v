@@ -14,7 +14,7 @@ module tt_um_example (
     input  wire       clk,      // clock
     input  wire       rst_n     // reset_n - low to reset
 );
-  
+   
   //Output 0
   wire or0_ouA; // Output wire of first OR gate
   assign or0_ouA = ui_in[0] + ui_in[1]; // OR gate connecting inputs 0 and 1
