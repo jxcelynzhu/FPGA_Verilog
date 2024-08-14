@@ -3,6 +3,46 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+// Testing tt_um_example
+module test_bench (
+    //input  wire [7:0] ui_in,    // Dedicated inputs
+    output wire [7:0] uo_out,   // Dedicated outputs
+    //input  wire [7:0] ui_in,   // IOs: Input path
+    //output wire [7:0] uio_out,  // IOs: Output path
+    //output wire [7:0] uio_oe,   // IOs: Enable path (active high: 0=input, 1=output)
+    input  wire       ena,      // always 1 when the design is powered, so you can ignore it
+    input  wire       clk,      // clock
+    input  wire       rst_n    // reset_n - low to reset
+);
+  
+  // Manually adjusting input values
+  // Only change input values to test design
+   // Can change to 0's
+  reg [7:0] ui_in;
+  wire [7:0] uio_out;
+  wire [7:0] uio_oe;
+  reg [7:0] junk;
+
+  assign ui_in [7:0]= {1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}; 
+  assign junk = uio_out & uio_oe;
+  
+  // Look at value generated in uo_out hec
+  
+  // Instantiating tt_um_example module into test design 
+  // Creating tt_um_example objects
+  tt_um_example tt (
+    .ui_in(ui_in),
+    .uo_out(uo_out),
+    .uio_in(8'b0),
+    .uio_out(uio_out),
+    .uio_oe(uio_oe),
+    .ena(ena),
+    .clk(clk),
+    .rst_n(rst_n)
+  );
+  
+endmodule
+  
 // FPGA Design
 module tt_um_example (
     input  wire [7:0] ui_in,    // Dedicated inputs
@@ -14,23 +54,34 @@ module tt_um_example (
     input  wire       clk,      // clock
     input  wire       rst_n     // reset_n - low to reset
 );
-   
+  
+  /*
+  // All output pins must be assigned. If not used, assign to 0.
+  assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
+  assign uio_out = 0;
+  assign uio_oe  = 0;
+
+  // List all unused inputs to prevent warnings
+  wire _unused = &{ena, clk, rst_n, 1'b0};
+
+    assign uo_out[0] = ui_in[0] + ui_in[1]; // OR gate assigned to output uo_out
+    assign uo_out[1] = ui_in[2] * ui_in[3]; // AND gate w/ inputs 2 and 3 assigned to ouput 1
+    assign uo_out[2] = ~ui_in[4]; // NOT gate
+    assign uo_out[3] = ~(ui_in[0] + ui_in[1]); // NOR gate
+    assign uo_out[4] = ~(ui_in[0] * ui_in[1]); // NAND gate
+
+    // Initializing wires
+    wire my_temp;
+    assign my_temp = ui_in[1];*/
+  
   //Output 0
-  wire or0_ouA; // Output wire of first OR gate
+  wire or0_ouA, or0_ouB, or0_ouC, or0_ouD, or0_ouE;  // Output wire of OR gates
+  
   assign or0_ouA = ui_in[0] + ui_in[1]; // OR gate connecting inputs 0 and 1
-   
-  wire or0_ouB;
   assign or0_ouB = ui_in[4] + ui_in[5]; // OR gate connecting inputs 4 and 5
-  
-  wire or0_ouC; // Output wire of third OR gate
   assign or0_ouC = ui_in[6] + ui_in[7];
-  
-  wire or0_ouD;
   assign or0_ouD = or0_ouA + or0_ouB;
-  
-  wire or0_ouE;
   assign or0_ouE = or0_ouD + or0_ouC;
-  
   assign uo_out[0] = or0_ouE;
   
   // Output 1 
@@ -86,7 +137,7 @@ module tt_um_example (
   assign or6_ouD = or6_ouA + or6_ouB;
   assign or6_ouE = or6_ouC + or6_ouD;
   assign uo_out[6] = or6_ouE;
-   
+  
   assign uo_out[7] = 0; // Initating output 7 to 0
   
   // Setting inactive output paths
@@ -94,3 +145,4 @@ module tt_um_example (
   assign uio_oe = 8'b00000000;
     
 endmodule
+
