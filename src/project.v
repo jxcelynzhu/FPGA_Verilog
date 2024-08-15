@@ -45,14 +45,21 @@ module tt_um_example (
   assign uo_out[0] = or0_ouE;
   
   // Output 1 
-  wire or1_ouA, or1_ouB, or1_ouC, or1_ouD, or1_ouE;
+  wire or1_ouA, or1_ouB, or1_ouC, or1_ouD;
   
+  /*
   assign or1_ouA = ui_in[0] + ui_in[1];
   assign or1_ouB = ui_in[3] + ui_in[4];
   assign or1_ouC = ui_in[6] + ui_in[7];
   assign or1_ouD = or1_ouA + or1_ouB;
   assign or1_ouE = or1_ouD + or1_ouC;
-  assign uo_out[1] = or1_ouE;
+  assign uo_out[1] = or1_ouE;*/
+  
+  assign or1_ouA = ui_in[0] + ui_in[1];
+  assign or1_ouB = ui_in[3] + ui_in[4];
+  assign or1_ouC = or1_ouA + or1_ouB;
+  assign or1_ouD = ui_in[6] + or1_ouC;
+  assign uo_out[1] = or1_ouD;
   
   // Output 2 - Good
   wire or2_ouA, or2_ouB, or2_ouC, or2_ouD, or2_ouE, or2_ouF; 
@@ -92,13 +99,15 @@ module tt_um_example (
   // Output 6 - 
   wire or6_ouA, or6_ouB, or6_ouC, or6_ouD, or6_ouE; 
   
+  /*
   assign or6_ouA = ui_in[1] + ui_in[2];
   assign or6_ouB = ui_in[3] + ui_in[4];
   assign or6_ouC = ui_in[5] + ui_in[7];
   assign or6_ouD = or6_ouA + or6_ouB;
   assign or6_ouE = or6_ouC + or6_ouD;
-  assign uo_out[6] = or6_ouE;
+  assign uo_out[6] = or6_ouE;*/
   
+  assign uo_out[6] = ui_in[7];  
   
   assign uo_out[7] = 0; // Initating output 7 to 0
   
@@ -107,6 +116,7 @@ module tt_um_example (
   assign uio_oe = 8'b00000000;
     
 endmodule
+
 
 
 
