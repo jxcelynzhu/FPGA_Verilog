@@ -2,8 +2,6 @@
  * Copyright (c) 2024 Jocelyn Zhu
  * SPDX-License-Identifier: Apache-2.0
  */
-
-
   
 // FPGA Design 
 module tt_um_example (
