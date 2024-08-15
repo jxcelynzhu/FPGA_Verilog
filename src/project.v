@@ -3,6 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
+  
 // FPGA Design
 module tt_um_example (
     input  wire [7:0] ui_in,    // Dedicated inputs
@@ -34,7 +36,7 @@ module tt_um_example (
     wire my_temp;
     assign my_temp = ui_in[1];*/
   
-  //Output 0 - Good
+  //Output: 1
   wire or0_ouA, or0_ouB, or0_ouC, or0_ouD, or0_ouE;  // Output wire of OR gates
   
   assign or0_ouA = ui_in[1] + ui_in[2]; // OR gate connecting inputs 0 and 1
@@ -44,26 +46,17 @@ module tt_um_example (
   assign or0_ouE = or0_ouD + or0_ouC;
   assign uo_out[0] = or0_ouE;
   
-  // Output 1 
-  wire or1_ouA, or1_ouB, or1_ouC, or1_ouD, or1_ouE, or1_ouF;
-  
-  /*
-  assign or1_ouA = ui_in[0] + ui_in[1];
-  assign or1_ouB = ui_in[3] + ui_in[4];
-  assign or1_ouC = ui_in[6] + ui_in[7];
-  assign or1_ouD = or1_ouA + or1_ouB;
-  assign or1_ouE = or1_ouD + or1_ouC;
-  assign uo_out[1] = or1_ouE;*/
+  // Output: 2
+  wire or1_ouA, or1_ouB, or1_ouC, or1_ouD, or1_ouE;
   
   assign or1_ouA = ui_in[0] + ui_in[1];
   assign or1_ouB = ui_in[2] + ui_in[3];
-  assign or1_ouC = ui_in[4] + ui_in[6];
+  assign or1_ouC = ui_in[6] + ui_in[7];
   assign or1_ouD = or1_ouA + or1_ouB;
-  assign or1_ouE = ui_in[7] + or1_ouC;
-  assign or1_ouF = or1_ouD + or1_ouE;
-  assign uo_out[1] = or1_ouF;
+  assign or1_ouE = or1_ouC + or1_ouD;
+  assign uo_out[1] = or1_ouE;
 
-  
+  /*
   // Output 2 - Good
   wire or2_ouA, or2_ouB, or2_ouC, or2_ouD, or2_ouE, or2_ouF; 
   
@@ -102,7 +95,6 @@ module tt_um_example (
   // Output 6 - 
   wire or6_ouA, or6_ouB, or6_ouC, or6_ouD, or6_ouE; 
   
-  /*
   assign or6_ouA = ui_in[1] + ui_in[2];
   assign or6_ouB = ui_in[3] + ui_in[4];
   assign or6_ouC = ui_in[5] + ui_in[7];
@@ -110,7 +102,11 @@ module tt_um_example (
   assign or6_ouE = or6_ouC + or6_ouD;
   assign uo_out[6] = or6_ouE;*/
   
-  assign uo_out[6] = ui_in[7];  
+  initial begin
+    for (int i = 2; i < 7; i++) begin
+        assign uo_out[i] = 0;
+   end
+  end
   
   assign uo_out[7] = 0; // Initating output 7 to 0
   
