@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
   
+
 // FPGA Design
 module tt_um_example (
     input  wire [7:0] ui_in,    // Dedicated inputs
@@ -14,8 +15,7 @@ module tt_um_example (
     input  wire       clk,      // clock
     input  wire       rst_n     // reset_n - low to reset
 );
-  
-  /*
+ 
   // All output pins must be assigned. If not used, assign to 0.
   assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
   assign uio_out = 0;
@@ -23,16 +23,17 @@ module tt_um_example (
 
   // List all unused inputs to prevent warnings
   wire _unused = &{ena, clk, rst_n, 1'b0};
+  
+  /*
+  assign uo_out[0] = ui_in[0] + ui_in[1]; // OR gate assigned to output uo_out
+  assign uo_out[1] = ui_in[2] * ui_in[3]; // AND gate w/ inputs 2 and 3 assigned to ouput 1
+  assign uo_out[2] = ~ui_in[4]; // NOT gate
+  assign uo_out[3] = ~(ui_in[0] + ui_in[1]); // NOR gate
+  assign uo_out[4] = ~(ui_in[0] * ui_in[1]); // NAND gate
 
-    assign uo_out[0] = ui_in[0] + ui_in[1]; // OR gate assigned to output uo_out
-    assign uo_out[1] = ui_in[2] * ui_in[3]; // AND gate w/ inputs 2 and 3 assigned to ouput 1
-    assign uo_out[2] = ~ui_in[4]; // NOT gate
-    assign uo_out[3] = ~(ui_in[0] + ui_in[1]); // NOR gate
-    assign uo_out[4] = ~(ui_in[0] * ui_in[1]); // NAND gate
-
-    // Initializing wires
-    wire my_temp;
-    assign my_temp = ui_in[1];*/
+  // Initializing wires
+  wire my_temp;
+  assign my_temp = ui_in[1]; */
   
   //Output: 1
   wire or0_ouA, or0_ouB, or0_ouC, or0_ouD, or0_ouE;  // Output wire of OR gates
@@ -99,13 +100,6 @@ module tt_um_example (
   assign or6_ouD = or6_ouA + or6_ouB;
   assign or6_ouE = or6_ouC + or6_ouD;
   assign uo_out[6] = or6_ouE;*/
-  
-  assign uo_out[2] = 0;
-  assign uo_out[3] = 0;
-  assign uo_out[4] = 0;
-  assign uo_out[5] = 0;
-  assign uo_out[6] = 0;
-  assign uo_out[7] = 0;
 
 
   
@@ -116,7 +110,7 @@ module tt_um_example (
    end
   end*/
   
-  assign uo_out[7] = 0; // Initating output 7 to 0
+  //assign uo_out[7] = 0; // Initating output 7 to 0
   
   // Setting inactive output paths
   assign uio_out = 8'b00000000;
