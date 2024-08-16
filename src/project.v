@@ -80,8 +80,8 @@ module tt_um_example (
   wire or4_ouA, or4_ouB; 
   
   assign or4_ouA = ui_in[1] + ui_in[5];
-  //assign or4_ouB = or4_ouA + ui_in[7];
-  assign uo_out[4] = or4_ouA;
+  assign or4_ouB = or4_ouA + ui_in[7];
+  assign uo_out[4] = or4_ouB;
   
   // Output 6
   wire or5_ouA, or5_ouB, or5_ouC; 
@@ -102,14 +102,7 @@ module tt_um_example (
   assign uo_out[6] = or6_ouE;
 
   
-  /*
-  initial begin
-    for (int i = 2; i < 7; i++) begin
-        assign uo_out[i] = 0;
-   end
-  end*/
-  
-  //assign uo_out[7] = 0; // Initating output 7 to 0
+  assign uo_out[7] = 0; // Initating output 7 to 0
   
   // Setting inactive output paths
   assign uio_out = 8'b00000000;
