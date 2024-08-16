@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
   
-// FPGA Design 
+// FPGA Design
 module tt_um_example (
     input  wire [7:0] ui_in,    // Dedicated inputs
     output wire [7:0] uo_out,   // Dedicated outputs
@@ -100,18 +100,26 @@ module tt_um_example (
   assign or6_ouE = or6_ouC + or6_ouD;
   assign uo_out[6] = or6_ouE;*/
   
+  assign uo_out[2] = 0;
+  assign uo_out[3] = 0;
+  assign uo_out[4] = 0;
+  assign uo_out[5] = 0;
+  assign uo_out[6] = 0;
+  assign uo_out[7] = 0;
+
+
+  
+  /*
   initial begin
     for (int i = 2; i < 7; i++) begin
         assign uo_out[i] = 0;
    end
-  end
-    
+  end*/
+  
+  assign uo_out[7] = 0; // Initating output 7 to 0
+  
   // Setting inactive output paths
   assign uio_out = 8'b00000000;
   assign uio_oe = 8'b00000000;
     
 endmodule
-
-
-
-
