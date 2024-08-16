@@ -101,8 +101,7 @@ module tt_um_example (
   assign or6_ouE = or6_ouC + or6_ouD;
   assign uo_out[6] = or6_ouE;
 
-  
-  assign uo_out[7] = 0; // Initating output 7 to 0
+  //assign uo_out[7] = 0; // Initating output 7 to 0
   
   // Setting inactive output paths
   assign uio_out = 8'b00000000;
